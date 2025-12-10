@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paderno Katalog – 3D FlipBook (Single Page)</title>
+  <title>Paderno Katalog – 3D FlipBook Single Page</title>
 
-  <!-- 3D FlipBook Styles aus dem Repo -->
+  <!-- Styles aus deinem Repo -->
   <link rel="stylesheet" href="css/black-book-view.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
 
@@ -19,7 +19,7 @@
     }
     #paderno-book {
       width: 100%;
-      height: 100vh; /* ganze Hoehe, auch mobil */
+      height: 100vh;
     }
   </style>
 </head>
@@ -28,29 +28,30 @@
   <!-- Container fuer das FlipBook -->
   <div id="paderno-book"></div>
 
-  <!-- 3D FlipBook Scripts aus js/ -->
+  <!-- JS-Libraries aus deinem Repo -->
   <script src="js/jquery.min.js"></script>
   <script src="js/html2canvas.min.js"></script>
   <script src="js/three.min.js"></script>
   <script src="js/pdf.min.js"></script>
+
+  <!-- Gebautes Plugin (liegt bei dir in /dist) -->
   <script src="dist/flip-book.min.js"></script>
 
   <script>
     // Optionen fuer dein PDF
     var options = {
-      pdf: 'Paderno-mp.pdf', // liegt im gleichen Ordner wie index.html
+      pdf: 'Paderno-mp.pdf',
 
-      // Single-Page-Mode standardmaessig aktiv
+      // Single-Page-Modus standardmaessig aktiv
       controlsProps: {
         actions: {
           cmdSinglePage: {
-            active: true      // eine Seite statt Doppelseite
-            // activeForMobile: true // optional, falls nur auf Mobile
+            active: true,          // Single Page auch auf Desktop
+            activeForMobile: true  // und auf Mobile
           }
         }
       },
 
-      // Template / Skin – Standard aus dem Repo
       template: {
         html: 'templates/default-book-view.html',
         styles: [
@@ -68,8 +69,10 @@
       }
     };
 
-    // FlipBook im Container initialisieren
-    $('#paderno-book').FlipBook(options);
+    // FlipBook bauen, wenn DOM fertig ist
+    $(function () {
+      $('#paderno-book').FlipBook(options);
+    });
   </script>
 
 </body>
